@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { routes } from "./utils/routes";
 import Login from "./pages/Login";
 import NoPage from "./pages/NoPage";
@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className={true && "dark"}>
                 <Routes>
                     {/* public route */}
@@ -19,7 +19,7 @@ function App() {
                     <Route path="*" element={<NoPage />} />
                 </Routes>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
