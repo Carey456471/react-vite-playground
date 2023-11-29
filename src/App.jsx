@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 function App() {
     return (
-        <HashRouter>
+        <HashRouter future={{ v7_startTransition: true }}>
             <div className={true && "dark"}>
                 <Routes>
                     {/* public route */}

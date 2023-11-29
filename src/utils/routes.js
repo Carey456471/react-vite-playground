@@ -1,8 +1,8 @@
 const baseUrl = "/react-vite-playground";
 
 const routes = {
-    "login" : baseUrl + "/login",
-    "home" : baseUrl + "/home",
+    "login" : "/login",
+    "home" : "/home",
 }
 
 export {routes}
