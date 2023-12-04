@@ -1,6 +1,7 @@
 const storages = {
     USER : "user",
-    TOKEN : "token"
+    TOKEN : "token",
+    REFRESH_TOKEN : "refresh_token",
 }
 
 export {storages}
