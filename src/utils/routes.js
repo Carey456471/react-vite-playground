@@ -1,7 +1,7 @@
 
 const routes = {
     "login" : "/login",
-    "home" : "/home",
+    "home" : "/",
 }
 
 export {routes}
