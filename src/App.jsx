@@ -1,7 +1,7 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { routes } from "./utils/routes";
 import Login from "./pages/Login";
-import NoPage from "./pages/NoPage";
+import Page404 from "./pages/Page404";
 import Home from "./pages/Home";
 import { AuthContextProvider } from "./context/AuthContext";
 
@@ -17,7 +17,7 @@ function App() {
                             {/* protected route */}
                             <Route path={routes.home} element={<Home />} />
 
-                            <Route path="*" element={<NoPage />} />
+                            <Route path="*" element={<Page404 />} />
                         </Routes>
                     </div>
                 </AuthContextProvider>

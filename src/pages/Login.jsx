@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import React from 'react';
 import PublicRoute from '../components/routes/PublicRoute';
 import { LoginForm, LoginLeftImg } from '../components';
 
@@ -18,7 +17,7 @@ function Login() {
                     </svg>
                 </div>
 
-                {/* login containter */}
+                {/* login form */}
                 <div className="w-screen h-screen absolute top-0 left-0">
                     <div className="w-full h-full flex justify-center items-center overflow-auto">
                         <div className=" max-w-3xl w-full h-[500px] max-h-screen mx-auto flex shadow-[0px_0px_10px_2px] shadow-zinc-600 dark:shadow-zinc-800 rounded-md">
