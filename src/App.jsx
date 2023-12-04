@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { routes } from "./utils/routes";
 import Login from "./pages/Login";
