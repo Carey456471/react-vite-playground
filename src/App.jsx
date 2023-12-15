@@ -1,28 +1,48 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
-import { routes } from "./utils/routes";
-import Login from "./pages/Login";
-import Page404 from "./pages/Page404";
-import Home from "./pages/Home";
-import { AuthContextProvider } from "./context/AuthContext";
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { routes } from './utils/routes';
+import { LoginPage, HomePage, Page404 } from './pages';
+import { Layout } from './components';
+import { useDispatch } from 'react-redux';
+import { setScreenSize } from './store/slices/AppSlice';
+import { useEffect } from 'react';
 
 function App() {
-    return (
-        <HashRouter future={{ v7_startTransition: true }}>
-                <AuthContextProvider>
-                    <div className={true && "dark"}>
-                        <Routes>
-                            {/* public route */}
-                            <Route path={routes.login} element={<Login />} />
+  const dispatch = useDispatch();
 
-                            {/* protected route */}
-                            <Route path={routes.home} element={<Home />} />
+  useEffect(() => {
+    const handleResize = () => {
+      const screenSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+      dispatch(setScreenSize(screenSize));
+    };
+    handleResize();
 
-                            <Route path="*" element={<Page404 />} />
-                        </Routes>
-                    </div>
-                </AuthContextProvider>
-        </HashRouter>
-    );
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <HashRouter future={{ v7_startTransition: true }}>
+      <div className={true && 'dark'}>
+        <Routes>
+          {/* public route */}
+          <Route path={routes.login} element={<LoginPage />} />
+
+          {/* protected route */}
+          <Route element={<Layout />}>
+            <Route path={routes.home} element={<HomePage />} />
+          </Route>
+
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </div>
+    </HashRouter>
+  );
 }
 
 export default App;

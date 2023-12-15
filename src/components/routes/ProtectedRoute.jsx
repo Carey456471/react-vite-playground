@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { Navigate, useLocation } from "react-router-dom";
-import { routes } from "../../utils/routes";
+import React from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { routes } from '../../utils/routes';
+import { useSelector } from 'react-redux';
 
-function ProtectedRoute({children}) {
-    const { isAuth } = useContext(AuthContext);
-    const location = useLocation()
+function ProtectedRoute({ children }) {
+  const auth = useSelector((state) => state.persist.authReducer.auth);
+  const location = useLocation();
 
-    if (!isAuth()){
-        return <Navigate to={routes.login} replace state={{from : location}}/>
-    }
+  if (!auth) {
+    return <Navigate to={routes.login} replace state={{ from: location }} />;
+  }
 
-    return children
+  return children;
 }
 
 export default ProtectedRoute;

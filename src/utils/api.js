@@ -1,23 +1,14 @@
-import axios from "axios";
-import secureLocalStorage from "react-secure-storage";
-import { storages } from "./storages";
-import { routes } from "./routes";
+import axios from 'axios';
 
-const apiBaseURL = "http://127.0.0.1:8000/";
+const apiBaseURL = 'your backend host';
 const apiRoutes = {
-  login: "api/login",
-  logout: "api/logout",
+  login: 'login',
+  logout: 'logout'
 };
 
 const apiAxios = axios.create({
-  baseURL: apiBaseURL,
+  baseURL: apiBaseURL
 });
-
-apiAxios.interceptors.request.use(
-    (request) => {
-        console.log ("start api request: " + request.url)
-    }
-)
 
 apiAxios.interceptors.response.use(
   (response) => {
@@ -27,10 +18,9 @@ apiAxios.interceptors.response.use(
   },
   (error) => {
     if (error.response.status == 401) {
-        secureLocalStorage.removeItem(storages.TOKEN);
-        secureLocalStorage.removeItem(storages.USER);
-        window.location.href = "#" + routes.login;
+      console.log('Unauthorized');
     } else if (error.response.status == 403) {
+      console.log('Forbidden');
     }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
@@ -38,4 +28,4 @@ apiAxios.interceptors.response.use(
   }
 );
 
-export {apiAxios, apiRoutes}
+export { apiAxios, apiRoutes };
